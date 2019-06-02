@@ -60,12 +60,27 @@ class _HomePageState extends State<HomePage> {
       ),
       body: new PokeGrid(pokedex: pokedex),
       drawer: Drawer(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(
-          Icons.refresh,
-          color: Colors.white,
-        ),
+      floatingActionButton: new RefreshButton(),
+    );
+  }
+}
+
+class RefreshButton extends StatelessWidget {
+  const RefreshButton({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text('Pokedex is being updated...'),
+        ));
+      },
+      child: Icon(
+        Icons.refresh,
+        color: Colors.white,
       ),
     );
   }

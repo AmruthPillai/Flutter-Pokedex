@@ -19,20 +19,35 @@ class DetailPage extends StatelessWidget {
         children: <Widget>[
           Positioned(
             left: 40.0,
-            top: MediaQuery.of(context).size.height * 0.1,
+            top: MediaQuery.of(context).size.height * 0.14,
             width: MediaQuery.of(context).size.width - 80.0,
             height: MediaQuery.of(context).size.height / 1.5,
             child: Card(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
+                borderRadius: BorderRadius.circular(8.0),
               ),
+              elevation: 8.0,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text(pokemon.name),
+                  SizedBox(height: 50.0),
+                  Text(
+                    pokemon.name,
+                    style: TextStyle(
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   Text('Height: ${pokemon.height}'),
                   Text('Weight: ${pokemon.weight}'),
-                  Text('Types'),
+                  Text('Avg. Spawns: ${pokemon.avgSpawns}'),
+                  Text(
+                    'Types',
+                    style: TextStyle(
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: pokemon.type
@@ -43,7 +58,13 @@ class DetailPage extends StatelessWidget {
                             ))
                         .toList(),
                   ),
-                  Text('Weaknesses'),
+                  Text(
+                    'Weaknesses',
+                    style: TextStyle(
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: pokemon.weaknesses
@@ -59,19 +80,52 @@ class DetailPage extends StatelessWidget {
                             ))
                         .toList(),
                   ),
-                  Text('Next Evolution'),
+                  Text(
+                    'Next Evolution',
+                    style: TextStyle(
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: pokemon.nextEvolution
-                        .map((n) => FilterChip(
-                              backgroundColor: Colors.green,
-                              label: Text(n.name,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  )),
-                              onSelected: (bool value) {},
-                            ))
-                        .toList(),
+                    children: pokemon.nextEvolution != null
+                        ? pokemon.nextEvolution
+                            .map((n) => FilterChip(
+                                  backgroundColor: Colors.green,
+                                  label: Text(n.name,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      )),
+                                  onSelected: (bool value) {},
+                                ))
+                            .toList()
+                        : <Widget>[
+                            Text(
+                              '${pokemon.name} is the last state of evolution.',
+                            )
+                          ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: Hero(
+              tag: pokemon.id,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 30.0),
+                  Container(
+                    width: 180.0,
+                    height: 180.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(pokemon.img),
+                      ),
+                    ),
                   ),
                 ],
               ),
