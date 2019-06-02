@@ -13,6 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pokédex',
       theme: ThemeData(
+        pageTransitionsTheme: PageTransitionsTheme(builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder()
+        }),
         primaryColor: Colors.blue[800],
         accentColor: Colors.amber[700],
       ),
@@ -102,7 +106,10 @@ class PokeGrid extends StatelessWidget {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Image(image: NetworkImage(pkmn.img)),
+                            Hero(
+                              tag: pkmn.id,
+                              child: Image(image: NetworkImage(pkmn.img)),
+                            ),
                             SizedBox(height: 5.0),
                             Text(
                               pkmn.name,
