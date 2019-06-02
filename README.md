@@ -1,4 +1,4 @@
-# pokedex
+# Flutter Pokédex
 
 An app that you can use to know all about your favorite Pokémon!
 
