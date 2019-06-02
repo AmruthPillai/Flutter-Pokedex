@@ -1,16 +1,12 @@
 # Flutter Pokédex
 
-An app that you can use to know all about your favorite Pokémon!
+An app that you can use to know all about your favorite Pokémon!  
+Built using [Flutter](https://flutter.dev/) for Android/iOS
 
-## Getting Started
+## Demo
 
-This project is a starting point for a Flutter application.
+<img src="https://i.imgur.com/SSfEjBU.gif" alt="Pokedex" />
 
-A few resources to get you started if this is your first Flutter project:
+### Data Source
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+https://github.com/Biuni/PokemonGO-Pokedex/blob/master/pokedex.json
